@@ -1,0 +1,50 @@
+.atm-container {
+  max-width: 900px;
+  margin: 20px auto;
+  padding-top: 50px;
+}
+
+.atm h2 {
+  color: rgb(69, 2, 2);
+}
+
+.atm span {
+  color: rgb(114, 114, 0);
+}
+
+.transaction-history {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.history-box {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.vertical-line {
+  border-left: 2px solid #ccc;
+  height: 100%;
+}
+
+#history-list li {
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 0.25rem;
+  background-color: #fff;
+
+  background-color: rgb(189, 184, 184);
+  color: #fff;
+  font-weight: bold;
+}
+
+.balance-display {
+  text-align: end;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.job-text {
+  margin-bottom: 70px;
+}

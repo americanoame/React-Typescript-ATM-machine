@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 export const useATMLogic = () => {
     // initializes three pieces of state in a React component using the useState hook
     const [balance, setBalance] = useState<number>(0);
     const [amount, setAmount] = useState<number | ''>('');
     const [history, setHistory] = useState<string[]>([]);
+    const [warning, setWarning] = useState<string>('');
 
     // getCurrentTime that returns the current date and time as a formatted string.
     // const now = new Date(); creates a new Date object representing the current date and time.
@@ -29,11 +31,22 @@ export const useATMLogic = () => {
     // Finally, it resets the amount input field to an empty string.
     const deposit = (): void => {
         if (typeof amount !== 'number' || amount <= 0) {
-            alert('Invalid amount. Please enter a positive number.');
+            toast.error('Invalid amount. Please enter a positive number.');
             return;
         }
-        setBalance(prevBalance => prevBalance + amount);
+        setBalance(prevBalance => {
+            const newBalance = prevBalance + amount;
+
+
+            if (newBalance === 0) {
+                setWarning('Warning: Your balance went to $0.');
+            } else {
+                setWarning('');
+            }
+            return newBalance;
+        });
         addHistory(`You deposited $${amount}`);
+        toast.success(`You deposited $${amount}`);
         setAmount('');
     };
 
@@ -45,15 +58,27 @@ export const useATMLogic = () => {
     // Finally, it clears the input field for the next transaction.
     const withdraw = (): void => {
         if (typeof amount !== 'number' || amount <= 0) {
-            alert('Invalid amount. Please enter a positive number.');
+            toast.error('Invalid amount. Please enter a positive number.');
             return;
         }
         if (amount > balance) {
-            alert('Insufficient funds.');
+            toast.error('Insufficient funds.');
             return;
         }
-        setBalance(prevBalance => prevBalance - amount);
+        setBalance(prevBalance => {
+            const newBalance = prevBalance - amount;
+            if (newBalance === 0) {
+
+                setWarning('Warning: Your balance went to $0.');
+
+            } else {
+                setWarning('');
+            }
+            return newBalance;
+        });
         addHistory(`You withdrew $${amount}`);
+        toast.success(`You withdrew $${amount}`);
+
         setAmount('');
     };
 
@@ -61,9 +86,10 @@ export const useATMLogic = () => {
     // indicating that the balance was checked. It does not alter the balance or perform any other actions.
     const checkBalance = (): void => {
         addHistory(`Checked balance: $${balance}`);
+        toast.info(`Checked balance: $${balance}`);
     };
 
     // returns an object containing the current state variables
     // This object can be used to access and manipulate the state and functions from outside the component or hook.
-    return { balance, amount, history, setAmount, deposit, withdraw, checkBalance };
+    return { balance, amount, history, setAmount, deposit, withdraw, checkBalance, warning };
 };

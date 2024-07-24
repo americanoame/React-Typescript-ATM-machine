@@ -43,8 +43,19 @@
   text-align: end;
   font-size: 1.5rem;
   font-weight: bold;
+  color: rgb(28, 159, 85);
 }
 
 .job-text {
   margin-bottom: 70px;
 }
+
+.red-balance {
+  color: red;
+}
+
+.warning-message {
+  color: red;
+  font-weight: bold;
+}
+

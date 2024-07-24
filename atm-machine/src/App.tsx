@@ -3,7 +3,7 @@ import { useATMLogic } from './useATMLogic';
 import './index.css';
 
 const App: React.FC = () => {
-  const { balance, amount, history, setAmount, deposit, withdraw, checkBalance } = useATMLogic();
+  const { balance, amount, history, setAmount, deposit, withdraw, checkBalance, warning } = useATMLogic();
 
   return (
     <div className="atm-container">
@@ -40,9 +40,10 @@ const App: React.FC = () => {
           </div>
 
           <div className="col-md-6">
-            <p className="balance-display" id="balance">
+          <p className={`balance-display ${balance === 0 ? 'red-balance' : ''}`} id="balance">
               Balance: ${balance}
             </p>
+            {warning && <p className="warning-message">{warning}</p>}
             <div className="transaction-history mt-3">
               <h3>Transaction History</h3>
               <div className="history-box">

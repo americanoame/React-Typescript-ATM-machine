@@ -59,3 +59,53 @@
   font-weight: bold;
 }
 
+
+/* Media Queries for Responsiveness */
+@media screen and (max-width: 768px) {
+  .atm-container {
+    padding-top: 20px;
+    max-width: 100%; 
+  }
+
+  .vertical-line {
+    display: none; 
+  }
+
+  .atm-buttons button {
+    width: 100%; 
+    margin-bottom: 10px; 
+  }
+
+  .balance-display {
+    text-align: center; 
+    font-size: 1.25rem; 
+  }
+
+  .transaction-history {
+    max-height: 300px; 
+  }
+
+  .history-box {
+    max-height: 150px; 
+  }
+
+  .atm {
+    padding: 10px; 
+  }
+}
+
+@media screen and  (max-width: 480px) {
+  .atm h2 {
+    font-size: 1.25rem; 
+  }
+
+  .balance-display {
+    font-size: 1.25rem; 
+  }
+
+  .atm-container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+

@@ -20,7 +20,7 @@ const App: React.FC = () => {
               <p id="message">Welcome to RealBank.</p>
             </div>
             <div className="mb-3">
-              <input type="number" id="amount" className="form-control" placeholder="Enter amount" value={amount} onChange={(e) => setAmount(Number(e.target.value))} />
+              <input type="number" id="amount" className="form-control" placeholder="Enter amount" value={amount} onChange={(e) => setAmount(e.target.value === '' ? '' : Number(e.target.value))} />
             </div>
             <div className="atm-buttons">
               <button onClick={deposit} className="btn btn-warning mb-2">

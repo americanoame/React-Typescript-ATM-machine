@@ -77,7 +77,7 @@ export const useATMLogic = () => {
             return newBalance;
         });
         addHistory(`You withdrew $${amount}`);
-        toast.success(`You withdrew $${amount}`);
+        toast.info(`You withdrew $${amount}`);
 
         setAmount('');
     };
